@@ -1,0 +1,119 @@
+﻿@model ABCRetailApp.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #FFDAB9;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .sub-title {
+            font-size: 1.25rem;
+            color: #6c757d;
+        }
+
+        .card {
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .row dt {
+            font-weight: 600;
+            color: #343a40;
+        }
+
+        .row dd {
+            margin-bottom: 1rem;
+            color: #495057;
+        }
+
+        .img-thumbnail {
+            border-radius: 0.5rem;
+            max-width: 50%; /* Adjusted max-width to make the image smaller */
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <h1 class="text-center header-title">Product Details</h1>
+        <p class="text-center sub-title">Detailed view of the selected product</p>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h4 class="card-title">@Model.ProductName</h4>
+                <hr />
+
+                <dl class="row">
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-9">@Model.Description</dd>
+
+                    <dt class="col-sm-3">Price</dt>
+                    <dd class="col-sm-9 fw-bold">@Model.Price.ToString("C")</dd>
+
+                    <dt class="col-sm-3">Image</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl" alt="@Model.ProductName" class="img-thumbnail" />
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <a asp-action="Index" class="btn btn-secondary btn-lg">
+                <i class="bi bi-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

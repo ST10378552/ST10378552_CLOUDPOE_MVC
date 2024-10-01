@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - ABC Retail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"> <!-- Link to Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"> <!-- New font for buttons -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFDAB9; /* Light background color for body */
+            color: #333; /* Darker text color */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .navbar {
+            background-color: #343a40; /* Dark grey background for the navbar */
+            padding: 1px 20px;
+            display: flex; /* Use flexbox for alignment */
+            justify-content: center; /* Center content horizontally */
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #f8f9fa; /* Light text color for the navbar */
+            text-align: center; /* Center align text */
+        }
+
+        .hero {
+            background: url('https://t4.ftcdn.net/jpg/06/34/09/69/360_F_634096945_nT013AXOaokOmXXU0mRlfSLmnSbbmZXw.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f8f9fa; /* Light text color for hero section */
+            min-height: 100vh; /* Cover entire viewport height */
+            padding: 120px 20px; /* Increased padding for better spacing */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: none; /* Remove any border around the hero section */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .hero h1 {
+            font-size: 4rem; /* Increased font size for better visibility */
+            font-weight: bold;
+            color: #f8f9fa; /* Light text color for better visibility */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add shadow for better readability */
+        }
+
+        .hero p {
+            font-size: 1.75rem; /* Increased font size for better readability */
+            line-height: 1.4; /* Improve line spacing */
+            font-weight: 300; /* Light font weight for a modern look */
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Add shadow for better readability */
+            color: #8b6d5c; /* Light text color */
+            max-width: 800px; /* Limit the width for better readability */
+            margin: 0 auto; /* Center the paragraph */
+        }
+
+        .btn-primary {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply new font */
+            background: #FA8072; /* Gradient background */
+            border: none;
+            padding: 15px; /* Adjust padding for consistent button size */
+            font-size: 1.25rem; /* Larger font size for the buttons */
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            margin: 15px; /* Increased margin between buttons */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for better effect */
+
+            color: #ffffff; /* White text color for better contrast */
+            width: 200px; /* Fixed width for all buttons */
+            height: 60px; /* Fixed height for all buttons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold; /* Bold text for better visibility */
+        }
+
+            .btn-primary:hover {
+                background: #FFC0CB; /* Darker gradient on hover */
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+            }
+
+        .hero-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 30px; /* Increased space between buttons */
+            max-width: 800px; /* Limit the width for better alignment */
+            margin: 0 auto; /* Center the grid */
+        }
+
+        .footer {
+            padding: 10px 20px; /* Reduced padding for a compact footer */
+            background-color: transparent; /* Remove background color */
+            color: #6c757d; /* Light text color */
+            text-align: center;
+            position: relative;
+            border-top: none; /* Remove top border if any */
+        }
+
+            .footer p {
+                margin-bottom: 10px;
+                font-size: 0.875rem; /* Smaller font size */
+            }
+
+            .footer .social-icons {
+                margin-top: 10px;
+            }
+
+                .footer .social-icons a {
+                    color: #f8f9fa; /* Light text color for social icons */
+                    margin: 0 10px;
+                    font-size: 1.5rem;
+                    text-decoration: none;
+                }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to ABC Retail</h1>
+            <p>ABC Retail: Revolutionizing online retail with scalable cloud solutions to handle peak shopping seasons, streamline order processing, and enhance customer experiences with real-time analytics and reliable messaging.</p>
+            <div class="hero-buttons">
+                <a href="@Url.Action("Index","Customer")" class="btn btn-primary">Go to Customers</a>
+                <a href="@Url.Action("Index","Product")" class="btn btn-primary">Go to Products</a>
+                <a href="@Url.Action("Index","Order")" class="btn btn-primary">Go to Orders</a>
+                <a href="@Url.Action("Index","Files")" class="btn btn-primary">Go to Files</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p></p>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

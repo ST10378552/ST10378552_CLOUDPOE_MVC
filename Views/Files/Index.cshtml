@@ -1,0 +1,149 @@
+﻿@model IEnumerable<ABCRetailApp.Models.ContractModel>
+
+@{
+    ViewData["Title"] = "File Management";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFDAB9; /* Warm peach background */
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .header-title {
+            font-size: 2.5rem; /* Larger font size for prominence */
+            font-weight: bold; /* Bold text */
+            color: #495057; /* Darker text color for contrast */
+            text-align: center;
+            margin-bottom: 1.5rem; /* Adjusted margin for spacing */
+        }
+
+        .upload-form {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .upload-form input[type="file"] {
+                margin-bottom: 15px;
+                font-size: 1.1rem;
+            }
+
+            .upload-form button {
+                padding: 12px 20px;
+                font-size: 18px;
+                background-color: #F5B7B1; /* Warm coral button */
+                color: #ffffff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s, transform 0.3s;
+            }
+
+                .upload-form button:hover {
+                    background-color: #e55b50;
+                    transform: scale(1.05);
+                }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .file-card {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+            .file-card:hover {
+                transform: scale(1.02);
+            }
+
+        .file-card-header {
+            background-color: #F5B7B1; /* Custom peach color */
+            color: #ffffff;
+            padding: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .file-card-body {
+            padding: 15px;
+            background-color: #ffffff;
+        }
+
+        .file-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .file-card-footer {
+            padding: 10px;
+            background-color: #f1f3f5;
+            text-align: center;
+        }
+
+            .file-card-footer .btn {
+                background-color: #007bff;
+                color: #ffffff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+                .file-card-footer .btn:hover {
+                    background-color: #0056b3;
+                }
+    </style>
+</head>
+
+<body>
+    <h2 class="header-title">@ViewData["Title"]</h2>
+
+    <!-- Upload Form -->
+    <div class="upload-form">
+        <form asp-controller="Files" asp-action="Upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" class="form-control-file" />
+            <button type="submit" class="btn btn-primary mt-2">Upload</button>
+        </form>
+    </div>
+
+    <!-- List Files -->
+    <div class="card-container">
+        @foreach (var file in Model)
+        {
+            <div class="card file-card">
+                <div class="file-card-header">
+                    @file.FileName
+                </div>
+                <div class="file-card-body file-info">
+                    <p><strong>Size:</strong> @file.DisplaySize</p>
+                    <p><strong>Uploaded Date:</strong> @file.UploadedDate?.ToString("yyyy/MM/dd")</p>
+                </div>
+                <div class="file-card-footer">
+                    <a class="btn btn-primary" asp-controller="Files" asp-action="Download" asp-route-fileName="@file.FileName">Download</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #FFDAB9; /* Light peach background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #495057;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert {
+            margin-bottom: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+            .alert i {
+                font-size: 1.25rem;
+            }
+
+        .card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+            .card img {
+                border-radius: 0.5rem;
+                max-height: 200px; /* Limit the image height */
+                object-fit: cover; /* Ensure image fits nicely within the card */
+            }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .card-footer {
+            background-color: #ffffff;
+            border-top: 1px solid #dee2e6;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-custom {
+            background-color: #F5B7B1; /* Custom peach color */
+            color: #ffffff; /* Text color */
+            border: none;
+            border-radius: 30px; /* More rounded button */
+            transition: background-color 0.3s, transform 0.3s;
+            padding: 15px 30px; /* Adjusted padding for better appearance */
+            font-size: 1.25rem; /* Font size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn-custom:hover {
+                background-color: #e55b50; /* Slightly darker shade on hover */
+                transform: scale(1.05);
+            }
+
+        .create-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-title-orders {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+
+        .table-custom {
+            background-color: #F5B7B1; /* Custom peach color for table header */
+            color: #ffffff; /* White text color for table header */
+        }
+
+            .table-custom th {
+                background-color: #F5B7B1; /* Same color for table header */
+                color: #ffffff; /* White text color for table header */
+            }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table td, .table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .badge {
+            font-size: 1rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <h1 class="text-center header-title-orders">Orders</h1>
+
+        @if (TempData["OrderSuccess"] != null)
+
+
+
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>@TempData["OrderSuccess"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="d-flex justify-content-center mb-4">
+            <a href="@Url.Action("Create", "Order")" class="btn btn-custom btn-lg">
+                <i class="bi bi-plus-circle me-2"></i>Create New Order
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered align-middle">
+                <thead class="table-custom sticky-top">
+                    <tr>
+                        <th>Order Date</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+
+
+
+                    {
+                        <tr>
+                            <td>@order.OrderDate.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                            <td>@* Placeholder for Customer Name *@ "Customer Name"</td> <!-- Replace with actual customer name -->
+                            <td>@* Placeholder for Product Name *@ "Product Name"</td> <!-- Replace with actual product name -->
+                            <td>@order.Quantity</td>
+                            <td>@order.Price.ToString("C")</td>
+                            <td>
+                                <span class="badge bg-success">@order.Status</span> <!-- Styled badge for status -->
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

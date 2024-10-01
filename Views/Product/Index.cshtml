@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #FFDAB9; /* Light peach background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #495057;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert {
+            margin-bottom: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+            .alert i {
+                font-size: 1.25rem;
+            }
+
+        .card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+            .card img {
+                border-radius: 0.5rem;
+                max-height: 200px; /* Limit the image height */
+                object-fit: cover; /* Ensure image fits nicely within the card */
+            }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .card-footer {
+            background-color: #ffffff;
+            border-top: 1px solid #dee2e6;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-custom {
+            background-color: #F5B7B1; /* Custom peach color */
+            color: #ffffff; /* Text color */
+            border: none;
+            border-radius: 1.25rem; /* Rounded button */
+        }
+
+            .btn-custom:hover {
+                background-color: #e55b50; /* Slightly darker shade on hover */
+            }
+
+        .create-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <h1 class="text-center header-title">Product List</h1>
+
+        @if (TempData["SuccessMessage"] != null)
+
+
+
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>@TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+
+
+
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>@TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="create-button">
+            <a asp-action="Create" class="btn btn-custom btn-lg">
+                <i class="bi bi-plus-lg me-1"></i>Create New Product
+            </a>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+
+
+
+                        {
+                            <img src="@item.ImageUrl" alt="@item.ProductName" class="card-img-top" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ProductName</h5>
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><strong>Price:</strong> @item.Price.ToString("C")</p>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a asp-action="Details" asp-route-rowKey="@item.RowKey" class="btn btn-outline-info btn-sm me-2">
+                                <i class="bi bi-eye-fill"></i> Details
+                            </a>
+                            <a asp-action="Delete" asp-route-rowKey="@item.RowKey" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
